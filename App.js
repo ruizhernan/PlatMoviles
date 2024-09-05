@@ -7,23 +7,30 @@ import TestComponente from './componentes/TestComponente';
 import HorizontalScrollView from './componentes/ScrollVIew';
 import ScrollV from './componentes/Scroll';
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './Vistas/Home';
+import Btn from './componentes/Btn';
+import ScreenUnoB from './Vistas/ScreenUnoB';
+import ComponenteCuatro from './componentes/ComponenteCuatro';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <Text>Comenzamos a desarrollar para plataformas móviles</Text>
-      <Text> Este es otro texto </Text>
-      <Text> Atajo RNFES</Text>   */}
-      <Text>Esto es un texto</Text>
-      <ScrollV></ScrollV>
-      <PrimerComponente></PrimerComponente>      
-      <CuartoComponente Nombre = 'Jose' Edad='0'> </CuartoComponente>
-      <CuartoComponente Nombre='ESTAMOS HACIENDO LO POSIBLE'></CuartoComponente>
-      <CuartoComponente Nombre = '7MO PROG' Apellido='Rodriguez'></CuartoComponente>
-      <HorizontalScrollView></HorizontalScrollView>
-      <StatusBar style="auto" />
- 
-    </View>
+   <>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name = "Home" component={Home}/>
+          <Stack.Screen name = "PrimerComponente" component={PrimerComponente}/>
+          <Stack.Screen name = "ScreenUnoB" component={ScreenUnoB}/>
+          <Stack.Screen name = "TercerComponente" component={TercerComponente}/>
+          <Stack.Screen name = "ComponenteCuatro" component={ComponenteCuatro}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+
+      <StatusBar style="auto" /> 
+      </>
   
   );
 }
