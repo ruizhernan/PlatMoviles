@@ -10,6 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Vistas/Home';
+import Auth from './Vistas/Auth';
 import Btn from './componentes/Btn';
 import ScreenUnoB from './Vistas/ScreenUnoB';
 import ComponenteCuatro from './componentes/ComponenteCuatro';
@@ -21,6 +22,7 @@ export default function App() {
    <>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name ="Auth" component={Auth}/>
           <Stack.Screen name = "Home" component={Home}/>
           <Stack.Screen name = "PrimerComponente" component={PrimerComponente}/>
           <Stack.Screen name = "ScreenUnoB" component={ScreenUnoB}/>

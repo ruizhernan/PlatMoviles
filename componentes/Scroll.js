@@ -21,6 +21,21 @@ const ScrollV = () => {
         <Text>OTRO texto</Text>
         <Text>OTRO texto</Text>
         <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        <Text>OTRO texto</Text>
+        
 
 
 
