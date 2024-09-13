@@ -7,18 +7,18 @@ const Auth = () => {
   const authenticate = async () => {
     try {
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Authenticate',
-        fallbackLabel: 'Use Passcode',
+        promptMessage: 'Autenticarse',
+        fallbackLabel: 'Usar pin o patrón',
       });
 
       if (result.success) {
         navigation.navigate('Home');
-        console.log('Authenticated successfully');
+        console.log('Autenticación exitosa');
       } else {
-        console.log('Authentication failed');
+        console.log('Autenticación fallida');
       }
     } catch (error) {
-      console.error('Error during authentication', error);
+      console.error('Error durante autenticación', error);
     }
   };
 
