@@ -16,9 +16,9 @@ export default function Btn({ presionado, texto = "Boton por defecto" }) {
 const styles = StyleSheet.create({
     boton: {
         padding: 10,
-        backgroundColor: 'gray',
-        width: 90,
-        margin: 20,
+        backgroundColor: 'red',
+        width: 100,
+        margin: 40,
     },
 }
 )
