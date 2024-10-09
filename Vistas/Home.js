@@ -13,9 +13,9 @@ export default function Home({ navigation }) {
                 Este es el Home
             </Text>
             <HorizontalScrollView></HorizontalScrollView>
-            <Btn texto="Ir a componente " presionado={() => navigation.navigate("ScreenUnoB")}></Btn>
-            <Btn texto="Ir a componente 1" presionado={() => navigation.navigate("PrimerComponente")}></Btn>
-            <Btn texto="Ir a componente 3" presionado={() => navigation.navigate("TercerComponente")}></Btn>
+            <Btn texto="Ir a Number " presionado={() => navigation.navigate("UseStateNumber")}></Btn>
+            <Btn texto="Ir a String" presionado={() => navigation.navigate("UseStateString")}></Btn>
+            <Btn texto="Ir a Array" presionado={() => navigation.navigate("UseStateArray")}></Btn>
             
         </>
     )

@@ -1,47 +1,103 @@
-import { StyleSheet, Text, View } from 'react-native';
-import PrimerComponente from './componentes/PrimerComponente';
-import SegundoComponente from './componentes/SegundoComponente';
-import TercerComponente from './componentes/TercerComponente'
-import CuartoComponente from './componentes/CuartoComponente'
-import TestComponente from './componentes/TestComponente';
-import HorizontalScrollView from './componentes/ScrollVIew';
-import ScrollV from './componentes/Scroll';
-import { StatusBar } from 'expo-status-bar';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, StatusBar, View, ActivityIndicator, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as LocalAuthentication from 'expo-local-authentication';
+
 import Home from './Vistas/Home';
 import Auth from './Vistas/Auth';
-import Btn from './componentes/Btn';
+import Registro from './Vistas/Registro';
+import Ingreso from './Vistas/Ingreso';
+import PrimerComponente from './componentes/PrimerComponente';
 import ScreenUnoB from './Vistas/ScreenUnoB';
-import ComponenteCuatro from './componentes/ComponenteCuatro';
-
+import UseStateNumber from './componentes/UseStateNumber'
+import UseStateString from './componentes/UseStateString'
+import UseStateArray from './componentes/UseStateArray'
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Verificar si el usuario ya está autenticado
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      try {
+        const userLoggedIn = await AsyncStorage.getItem('userLoggedIn');
+        if (userLoggedIn) {
+          // Si el usuario ya ha iniciado sesión, intenta la autenticación biométrica
+          authenticateBiometric();
+        } else {
+          setLoading(false); // Muestra el login si no hay registro previo
+        }
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+    checkAuthentication();
+  }, []);
+
+  // Función para autenticar usando huella dactilar
+  const authenticateBiometric = async () => {
+    const compatible = await LocalAuthentication.hasHardwareAsync();
+    if (!compatible) {
+      Alert.alert('Dispositivo no compatible con autenticación biométrica');
+      setLoading(false);
+      return;
+    }
+
+    const { success } = await LocalAuthentication.authenticateAsync();
+    if (success) {
+      setIsAuthenticated(true);
+    } else {
+      Alert.alert('Falló la autenticación biométrica');
+    }
+    setLoading(false);
+  };
+
+  // Si está cargando, muestra un spinner de carga
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
-   <>
+    <>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name ="Auth" component={Auth}/>
-          <Stack.Screen name = "Home" component={Home}/>
-          <Stack.Screen name = "PrimerComponente" component={PrimerComponente}/>
-          <Stack.Screen name = "ScreenUnoB" component={ScreenUnoB}/>
-          <Stack.Screen name = "TercerComponente" component={TercerComponente}/>
-          <Stack.Screen name = "ComponenteCuatro" component={ComponenteCuatro}/>
+          {/* Aca revisamos si autenticó y esas serían las vistas a las que puede acceder */}
+          {isAuthenticated ? (
+            <>
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name ="UseStateNumber" component={UseStateNumber}/>
+              <Stack.Screen name ="UseStateString" component={UseStateString}/>
+              <Stack.Screen name ="UseStateArray" component={UseStateArray}/>
+
+            </>
+          ) :          {/* En caso que sea Falsa, solo se puede ver Ingreso y Registro */} (
+            
+            <>
+              <Stack.Screen name="Login" component={Ingreso} />
+              <Stack.Screen name="Registro" component={Registro} />
+
+            </>
+          )}
         </Stack.Navigator>
       </NavigationContainer>
-
-      <StatusBar style="auto" /> 
-      </>
-  
+      <StatusBar style="auto" />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 0.5,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  loadingContainer: {
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
