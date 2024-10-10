@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Button, Alert, TouchableOpacity } from 'react-native';
 import Registro from './Registro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function Ingreso({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +21,7 @@ export default function Ingreso({ navigation }) {
 
     try {
         //Este fetch es a mi IPV4 (la sacan con ip config y se debe modificar si cambian de wifi) :3000 (el puerto donde escucha el backend)
-      const response = await fetch(`http://10.0.50.58:3000/api/usuarios?email=${email}`);
+      const response = await fetch(`http://10.0.1.33:3000/api/usuarios?email=${email}`);
       
       if (response.ok) {
         const usuarios = await response.json();

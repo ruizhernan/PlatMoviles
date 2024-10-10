@@ -14,7 +14,7 @@ export default function Registro({navigation}) {
     }
 
     try {
-      const response = await fetch('http://10.0.50.58:3000/api/usuarios', {
+      const response = await fetch('http://10.0.1.33:3000/api/usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

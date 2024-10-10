@@ -9,8 +9,7 @@ import Home from './Vistas/Home';
 import Auth from './Vistas/Auth';
 import Registro from './Vistas/Registro';
 import Ingreso from './Vistas/Ingreso';
-import PrimerComponente from './componentes/PrimerComponente';
-import ScreenUnoB from './Vistas/ScreenUnoB';
+import VerUsuarios from './Vistas/VerUsuarios';
 import UseStateNumber from './componentes/UseStateNumber'
 import UseStateString from './componentes/UseStateString'
 import UseStateArray from './componentes/UseStateArray'
@@ -77,9 +76,9 @@ export default function App() {
               <Stack.Screen name ="UseStateNumber" component={UseStateNumber}/>
               <Stack.Screen name ="UseStateString" component={UseStateString}/>
               <Stack.Screen name ="UseStateArray" component={UseStateArray}/>
-
+              <Stack.Screen name ="VerUsuarios" component={VerUsuarios}/>
             </>
-          ) :          {/* En caso que sea Falsa, solo se puede ver Ingreso y Registro */} (
+          ) :   (
             
             <>
               <Stack.Screen name="Login" component={Ingreso} />

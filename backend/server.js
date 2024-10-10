@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//Parametros para conectar a la BD
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -14,6 +15,7 @@ const db = mysql.createConnection({
     database: 'test'
 });
 
+//Cone a la bd
 db.connect((err) => {
     if (err) {
         console.error('Error conectando a la base de datos: ', err);
